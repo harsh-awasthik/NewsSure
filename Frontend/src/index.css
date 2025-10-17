@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 210 15% 25%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 15% 25%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 15% 25%;
+    --primary: 200 55% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 180 65% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 20% 95%;
+    --muted-foreground: 210 10% 45%;
+    --accent: 180 65% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 200 55% 45%;
+    --radius: 0.75rem;
+
+    /* Sidebar variables */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 262 83% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 240 5.9% 90%;
+    --sidebar-ring: 262 83% 58%;
+
+    /* Custom gradients - blue/cyan theme */
+    --gradient-primary: linear-gradient(135deg, hsl(200 55% 45%) 0%, hsl(190 60% 50%) 50%, hsl(180 65% 55%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(200 40% 98%) 50%, hsl(190 35% 96%) 100%);
+    
+    /* Custom shadows - enhanced for modern look */
+    --shadow-lg: 0 25px 50px -12px rgb(0 0 0 / 0.15), 0 10px 20px -8px rgb(0 0 0 / 0.1);
+    --shadow-primary: 0 10px 40px -10px hsl(200 55% 45% / 0.4);
+    --shadow-success: 0 10px 40px -10px hsl(142 71% 45% / 0.4);
+    --shadow-warning: 0 10px 40px -10px hsl(38 92% 50% / 0.4);
+    --shadow-danger: 0 10px 40px -10px hsl(0 84% 60% / 0.4);
+  }
+
+  .dark {
+    --background: 210 20% 8%;
+    --foreground: 0 0% 98%;
+    --card: 210 20% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 210 20% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 200 55% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 180 65% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 15% 20%;
+    --muted-foreground: 210 10% 65%;
+    --accent: 180 65% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --border: 210 15% 20%;
+    --input: 210 15% 20%;
+    --ring: 200 55% 50%;
+
+    /* Sidebar variables for dark mode */
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 262 83% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 262 83% 58%;
+
+    /* Custom gradients for dark mode - blue/cyan theme */
+    --gradient-primary: linear-gradient(135deg, hsl(200 55% 50%) 0%, hsl(190 60% 55%) 50%, hsl(180 65% 60%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(210 20% 8%) 0%, hsl(200 30% 12%) 50%, hsl(190 25% 15%) 100%);
+    
+    /* Custom shadows for dark mode - enhanced glow */
+    --shadow-lg: 0 25px 50px -12px rgb(0 0 0 / 0.6), 0 10px 20px -8px rgb(0 0 0 / 0.5);
+    --shadow-primary: 0 10px 40px -10px hsl(200 55% 50% / 0.6);
+    --shadow-success: 0 10px 40px -10px hsl(142 71% 45% / 0.6);
+    --shadow-warning: 0 10px 40px -10px hsl(38 92% 50% / 0.6);
+    --shadow-danger: 0 10px 40px -10px hsl(0 84% 60% / 0.6);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
