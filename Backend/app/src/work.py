@@ -26,14 +26,14 @@ load_dotenv()
 
 import time
 from rest_framework.response import Response
-from image_verfication import simulate_image_verification
-from image_extraction import run_ocr_extraction
-from serp_searching import finding_related_article
-from finding_credibilty import simulate_domain_check
-from embedding_filtering import find_semantic_matches
-from scrapping_content import extract_article
-from summarising_content import summarize_all_articles
-from anaylize_summary import verify_claim_from_text
+from newssure.backend_code.image_verfication import simulate_image_verification
+from newssure.backend_code.image_extraction import run_ocr_extraction
+from newssure.backend_code.serp_searching import finding_related_article
+from newssure.backend_code.finding_credibilty import simulate_domain_check
+from newssure.backend_code.embedding_filtering import find_semantic_matches
+from newssure.backend_code.scrapping_content import extract_article
+from newssure.backend_code.summarising_content import summarize_all_articles
+from newssure.backend_code.anaylize_summary import verify_claim_from_text
 
 # ------------------------------------------------------------
 
