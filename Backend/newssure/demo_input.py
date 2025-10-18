@@ -14,14 +14,10 @@ Unified Workflow:
     9 - anaylize_summary (Final Truth + Verdict)
 ============================================================"""
 
+import os
 from dotenv import load_dotenv
-load_dotenv()
-
-
-
 import time
 import tempfile
-import os
 from rest_framework.response import Response
 import json
 from newssure.backend_code.image_verfication import simulate_image_verification
@@ -32,6 +28,10 @@ from newssure.backend_code.embedding_filtering import find_semantic_matches
 from newssure.backend_code.scrapping_content import extract_article
 from newssure.backend_code.summarising_content import summarize_all_articles
 from newssure.backend_code.anaylize_summary import verify_claim_from_text
+
+# Go one directory up (from newssure → Backend)
+dotenv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env.example")
+load_dotenv(dotenv_path)
 
 # ------------------------------------------------------------
 
@@ -143,14 +143,14 @@ if __name__ == "__main__":
             self.data = {'inputType': input_type, 'input': input_data}
             self.FILES = {}
 
-    # test_request = DummyRequest('text', 'The Earth is flat.')
-    # response = verify_claim(test_request)
-    # print(json.dumps(response, indent=4, ensure_ascii=False))
+    test_request = DummyRequest('text', 'The Earth is flat.')
+    response = verify_claim(test_request)
+    print(json.dumps(response, indent=4, ensure_ascii=False))
 
 
 # for image testing taking image from local system
-    test_request_img = DummyRequest('image', '')
-    test_request_img.FILES['file'] = open(r"C:\Users\praga\OneDrive\Desktop\news_dataset\fake_image3.png", 'rb')  # Replace with actual image path
-    response_img = verify_claim(test_request_img)   
-    print(json.dumps(response_img, indent=4, ensure_ascii=False))
+    # test_request_img = DummyRequest('image', '')
+    # test_request_img.FILES['file'] = open(r"C:\Users\praga\OneDrive\Desktop\news_dataset\fake_image3.png", 'rb')  # Replace with actual image path
+    # response_img = verify_claim(test_request_img)   
+    # print(json.dumps(response_img, indent=4, ensure_ascii=False))
 

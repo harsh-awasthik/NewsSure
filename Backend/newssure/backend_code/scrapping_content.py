@@ -1,4 +1,4 @@
-from model_loader import get_gemini_model
+from ..model_loader import get_gemini_model
 import requests
 from bs4 import BeautifulSoup
 from newspaper import Article
