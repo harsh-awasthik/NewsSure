@@ -1,4 +1,4 @@
-from model_loader import get_summarizer_model, get_gemini_model
+from ..model_loader import get_summarizer_model, get_gemini_model
 import nltk
 import google.generativeai as genai
 from sumy.parsers.plaintext import PlaintextParser

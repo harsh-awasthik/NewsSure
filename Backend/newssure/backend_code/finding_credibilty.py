@@ -7,12 +7,14 @@
 import json
 import numpy as np
 import tldextract
-from serp_searching import finding_related_article
+from .serp_searching import finding_related_article
 from dotenv import load_dotenv
 import os
 
 
-load_dotenv()
+# Go two directories up (from backend_code → newssure → Backend)
+dotenv_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), ".env.example")
+load_dotenv(dotenv_path)
 
 # ----------------------------
 # MBFC API Config (if using API instead of local JSON)
@@ -35,7 +37,7 @@ def extract_domain(url):
 # Compute hybrid credibility score
 # ----------------------------
 def compute_credibility_score(entry):
-    """Compute a weighted credibility score (0–100) using bias, factuality, and reliability."""
+    """Compute a weighted credibility score (0-100) using bias, factuality, and reliability."""
 
     # Weight lookup tables
     factual_weights = {
@@ -82,7 +84,13 @@ def simulate_domain_check(retrieved_articles):
         return {"filtered_articles": [], "avg_score": 0}
 
     try:
-        with open("mbfc_data.json", "r", encoding="utf-8") as f:
+        mbfc_path = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.dirname(__file__))),  # go up to Backend/
+            "app",
+            "assets",
+            "mbfc_data.json"
+        )
+        with open(mbfc_path, "r", encoding="utf-8") as f:
             mbfc_data = json.load(f)["data"]
     except Exception as e:
         print(f"⚠️ Could not load MBFC dataset: {e}")

@@ -6,7 +6,11 @@ Ensures heavy ML models (transformers, embeddings, etc.) are loaded only once.
 # pip install python-dotenv
 
 from sentence_transformers import SentenceTransformer
+import os
 from dotenv import load_dotenv
+
+# Go one directory up (from newssure → Backend)
+
 from transformers import pipeline
 import google.generativeai as genai
 import os
@@ -14,7 +18,8 @@ import os
 # ------------------------------------------------------------
 # Load .env environment variables
 # ------------------------------------------------------------
-load_dotenv()
+dotenv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env.example")
+load_dotenv(dotenv_path)
 
 # Read from .env
 GEMINI_API = os.getenv("GEMINI_API")

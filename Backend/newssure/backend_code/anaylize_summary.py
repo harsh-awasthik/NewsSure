@@ -1,4 +1,4 @@
-from model_loader import get_classifier_model
+from ..model_loader import get_classifier_model
 import numpy as np
 
 # ------------------------------------------------------------
