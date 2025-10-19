@@ -18,6 +18,7 @@ lerna-debug.log*
 .env
 .env.*.local
 .envrc
+!.env.example  # ✅ Keep the example file visible
 
 # Temporary / cache folders
 tmp/
@@ -120,6 +121,16 @@ models/*
 # Keep folder structure if needed
 !/Backend/models/.gitkeep
 !/models/.gitkeep
+
+# =========================================================
+# 🔹 MODEL / CACHE EXTENSIONS
+# =========================================================
+
+# Model caches
+~/.cache/
+.huggingface/
+transformers_cache/
+datasets/
 
 # =========================================================
 # 🔹 OPTIONAL / CUSTOM
