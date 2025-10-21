@@ -25,6 +25,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import time
+import tempfile
+import os
 from rest_framework.response import Response
 from newssure.backend_code.image_verfication import simulate_image_verification
 from newssure.backend_code.image_extraction import run_ocr_extraction
@@ -62,10 +64,22 @@ def verify_claim(request):
     if input_type == 'image':
         image_file = request.FILES.get('file')
 
-        temp_path = f"/tmp/{image_file.name}"
-        with open(temp_path, 'wb+') as dest:
-            for chunk in image_file.chunks():
-                dest.write(chunk)
+        temp_dir = tempfile.gettempdir()
+        temp_path = os.path.join(temp_dir, image_file.name)
+        
+        # ✅ Safe save without corruption
+        if hasattr(image_file, "chunks"):  # UploadedFile case
+            with open(temp_path, "wb+") as dest:
+                for chunk in image_file.chunks():
+                    dest.write(chunk)
+        else:
+            if isinstance(image_file, str):
+                with open(image_file, "rb") as src, open(temp_path, "wb+") as dest:
+                    dest.write(src.read())
+            else:
+                with open(image_file.path, "rb") as src, open(temp_path, "wb+") as dest:
+                    dest.write(src.read())
+
 
 
         # --- Stage 1: Check if AI generated ---
