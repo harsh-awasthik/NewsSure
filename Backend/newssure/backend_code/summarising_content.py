@@ -73,7 +73,7 @@ def summarize_with_gemini(claim: str, text: str) -> str:
            "Overall, the article refutes the claim."
            OR
            "Overall, the article is neutral toward the claim."
-        4. Write the summary in 3–6 concise sentences, keeping key facts, entities, and stance indicators
+        4. Write the summary in 3-6 concise sentences, keeping key facts, entities, and stance indicators
            (words like “denied”, “refuted”, “agreed”, “confirmed”, “disputed”, “claimed”, etc.).
 
         Article:
