@@ -5,22 +5,15 @@ from paddleocr import PaddleOCR
 # ----------------------------
 # OCR Text Extraction
 
-ocr = PaddleOCR(
-    lang='en',
-    use_textline_orientation=False,
-    text_det_unclip_ratio=1.5,
-    text_recognition_batch_size=4,
-    textline_orientation_batch_size=1
-)
 
 def run_ocr_extraction(image_path: str, visualize: bool = False) -> str:
     """Extract text from an image using PaddleOCR, compatible with all versions."""
-    print("🚀 Initializing PaddleOCR...")
+    print("Initializing PaddleOCR...")
 
     ocr = PaddleOCR(lang='en')
 
     if not os.path.exists(image_path):
-        raise FileNotFoundError(f"❌ Image not found: {image_path}")
+        raise FileNotFoundError(f"Image not found: {image_path}")
 
     try:
         # ✅ For PaddleOCR v4.x (newer)
@@ -56,13 +49,14 @@ def run_ocr_extraction(image_path: str, visualize: bool = False) -> str:
                 extracted_data.append({"text": txt, "confidence": conf})
 
     extracted_text = " ".join(all_text).strip()
-    print(f"🧾 Extracted text: {extracted_text or '⚠️ No text detected.'}")
-    return extracted_text
 
+    if not extracted_text:
+        extracted_text = "No text detected."
 
-    
+    print(f"🧾 Extracted text: {extracted_text}")
+    return extracted_text 
 
 if __name__ == "__main__":
-    test_image = r"C:\Users\praga\OneDrive\Desktop\news_dataset\NewsSure\Backend\app\assets\Screenshot 2025-10-12 212503.jpg"  # Replace with your test image path
+    test_image = R"C:\Users\praga\OneDrive\Desktop\news_dataset\fake_image3.png"  # Replace with your test image path
     extracted_text = run_ocr_extraction(test_image, visualize=False)
     print(f"\nFinal Extracted Text:\n{extracted_text}\n")

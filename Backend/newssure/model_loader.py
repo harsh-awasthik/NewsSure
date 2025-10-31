@@ -18,7 +18,7 @@ import os
 # ------------------------------------------------------------
 # Load .env environment variables
 # ------------------------------------------------------------
-dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
+dotenv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env.example")
 load_dotenv(dotenv_path)
 
 # Read from .env

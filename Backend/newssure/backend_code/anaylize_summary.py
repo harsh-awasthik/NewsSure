@@ -56,7 +56,7 @@ def analyze_claim_vs_summary(claim, summary):
 
     # Explicit cues of refutation or denial
     refute_keywords = [
-        "refutes","fake", "false", "denied", "refuted", "clarified", "no such",
+        "fake", "false", "denied", "refuted", "clarified", "no such",
         "fabricated", "not true", "incorrect", "contradict", "disprove",
         "debunk", "denies", "myth", "hoax", "isn't", "is not", "wasn't"
     ]

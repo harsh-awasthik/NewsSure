@@ -1,4 +1,3 @@
-# python -m newssure.demo_input     
 """
 ============================================================
 TruthScope - AI + Community-Driven News Verification System
@@ -64,25 +63,24 @@ def verify_claim(request):
         temp_dir = tempfile.gettempdir()
         temp_path = os.path.join(temp_dir, image_file.name)
 
-        # ✅ Safe copy (no corruption)
-        if hasattr(image_file, "chunks"):  # Django UploadedFile case
-            with open(temp_path, "wb+") as dest:
+        if hasattr(image_file, "chunks"):  # True for Django UploadedFile
+            with open(temp_path, 'wb+') as dest:
                 for chunk in image_file.chunks():
                     dest.write(chunk)
         else:  # Local testing mode
-            with open(image_file.path, "rb") as src, open(temp_path, "wb+") as dest:
-                dest.write(src.read())
+            with open(temp_path, 'wb+') as dest:
+                dest.write(image_file.read())
     
 
         # --- Stage 1: Check if AI generated ---
         ai_check = simulate_image_verification(image_file)
         if ai_check.get("aiGenerated"):
-            return{
+            return Response({
                 "verdict": "AI-generated image",
                 "truthScore": 0,
                 "aiGenerated": True,
                 "explanation": "Detected as AI-generated visual. No further processing required."
-            }
+            })
 
 
         # --- Stage 2: OCR Extraction ---
@@ -96,7 +94,7 @@ def verify_claim(request):
         claim = request.data.get('input', '').strip()
 
     if not claim:
-        return {"error": "No valid text or image content found.", "status": 400}
+        return Response({"error": "No valid text or image content found."}, status=400)
 
     print(f"\n CLAIM: {claim}\n{'='*80}")
 
@@ -139,41 +137,20 @@ def verify_claim(request):
 
 
 if __name__ == "__main__":
+    # Example test case (can be expanded as needed)
     class DummyRequest:
         def __init__(self, input_type, input_data):
-            self.data = {"inputType": input_type, "input": input_data}
+            self.data = {'inputType': input_type, 'input': input_data}
             self.FILES = {}
 
-    class DummyFile:
-        """Simulates a Django UploadedFile object for local image testing."""
+    test_request = DummyRequest('text', 'The Earth is flat.')
+    response = verify_claim(test_request)
+    print(json.dumps(response, indent=4, ensure_ascii=False))
 
-        def __init__(self, path):
-            self.name = os.path.basename(path)
-            self.path = path
 
-        def read(self):
-            with open(self.path, "rb") as f:
-                return f.read()
-
-        def chunks(self, chunk_size=4096):
-            with open(self.path, "rb") as f:
-                while True:
-                    chunk = f.read(chunk_size)
-                    if not chunk:
-                        break
-                    yield chunk
-
-    # Local image test
-    test_request_img = DummyRequest("image", "")
-    image_path = r"C:\Users\praga\OneDrive\Desktop\news_dataset\NewsSure\Backend\app\assets\Screenshot 2025-10-12 212503.jpg"
-
-    test_request_img.FILES["file"] = DummyFile(image_path)
-
-    # Run full pipeline
-    response_img = verify_claim(test_request_img)
-
-    # ✅ Display output nicely
-    print("\nFINAL OUTPUT:")
-    print(json.dumps(response_img, indent=4, ensure_ascii=False))
-
+# for image testing taking image from local system
+    # test_request_img = DummyRequest('image', '')
+    # test_request_img.FILES['file'] = open(r"C:\Users\praga\OneDrive\Desktop\news_dataset\fake_image3.png", 'rb')  # Replace with actual image path
+    # response_img = verify_claim(test_request_img)   
+    # print(json.dumps(response_img, indent=4, ensure_ascii=False))
 
