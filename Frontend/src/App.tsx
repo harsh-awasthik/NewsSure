@@ -20,12 +20,12 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/share/:id" element={<ShareCard />} />
-            <Route path="/share-card" element={<ShareCard />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
+            <Route path="/share-card" element={<ShareCard />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
