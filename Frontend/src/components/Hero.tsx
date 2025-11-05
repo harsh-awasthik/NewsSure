@@ -1,5 +1,5 @@
 import { Shield, Search, CheckCircle } from "lucide-react";
-import newssureLogo from "@/assets/newssure_logo.jpg";
+import newssureLogo from "@/assets/favicon.ico";
 
 export const Hero = () => {
   return (

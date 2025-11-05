@@ -99,12 +99,13 @@ export const ShareButtons = ({
     const result = await shareCard(cardRef.current, title, text);
     setIsSharing(false);
 
-    if (result.success && result.message) {
-      toast({
-        title: 'Success!',
-        description: result.message,
-      });
-    } else if (!result.success) {
+    // if (result.success && result.message) {
+    //   toast({
+    //     title: 'Success!',
+    //     description: result.message,
+    //   });
+    // } else 
+    if (!result.success) {
       toast({
         title: 'Share failed',
         description: 'Please try again.',
@@ -155,17 +156,17 @@ export const ShareButtons = ({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-48">
-          <DropdownMenuItem onClick={handleWhatsAppShare}>
+          {/* <DropdownMenuItem onClick={handleWhatsAppShare}>
             <MessageCircle className="w-4 h-4 mr-2" />
             Share to WhatsApp
           </DropdownMenuItem>
           <DropdownMenuItem onClick={handleInstagramShare}>
             <Instagram className="w-4 h-4 mr-2" />
             Share to Instagram
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
           <DropdownMenuItem onClick={handleGenericShare}>
             <Share2 className="w-4 h-4 mr-2" />
-            More options...
+            Share via social media apps...
           </DropdownMenuItem>
           <DropdownMenuItem onClick={handleCopyLink}>
             {linkCopied ? (
