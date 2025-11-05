@@ -1,5 +1,5 @@
 import { LogOut, User, X, Mail, Github, Linkedin, Twitter } from "lucide-react";
-import newssureLogo from "@/assets/newssure_logo.jpg";
+import newssureLogo from "@/assets/favicon.ico";
 import { ThemeToggle } from "./ThemeToggle";
 import { Button } from "./ui/button";
 import { supabase } from "@/integrations/supabase/client";
@@ -59,11 +59,11 @@ export const Header = () => {
       role: 'AI/ML and Backend Developer',
       email: 'harshawasthik@gmail.com',
     },
-    {
-      name: 'Muhd. Adnan Mohsin',
-      role: 'Lead Developer',
-      email: 'adnanenigmatic@gmail.com',
-    },
+    // {
+    //   name: 'Muhd. Adnan Mohsin',
+    //   role: 'Lead Developer',
+    //   email: 'adnanenigmatic@gmail.com',
+    // },
   ];
 
   return (
